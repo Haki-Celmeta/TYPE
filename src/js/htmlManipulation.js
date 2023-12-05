@@ -104,14 +104,28 @@ function displayWpm() {
   const time = document.querySelector('#time');
 
   clearInterval(startTime);
+  const wpmCalculated = Calculate.wpm(40, seconds);
 
-  wpm.textContent = `${Calculate.wpm(40, seconds)} wpm`;
+  wpm.textContent = `${wpmCalculated} wpm`;
   mistake.textContent = `${mistakes}`;
   words.textContent = `${40}`;
   time.textContent = `${seconds}s`;
 
   beforeContainer.style.display = 'none';
   afterContainer.style.display = 'flex';
+
+  let currentValue = localStorage.getItem('allTests');
+  let numericValue = parseInt(currentValue) || 0;
+  ++numericValue;
+  localStorage.setItem('allTests', numericValue);
+
+  if (!localStorage.getItem('bestWpm')) {
+    localStorage.setItem('bestWpm', wpmCalculated);
+  } else if (localStorage.getItem('bestWpm') < wpmCalculated) {
+    localStorage.setItem('bestWpm', wpmCalculated);
+  }
+
+  bestWpmDisplay();
 }
 
 /**
@@ -179,6 +193,21 @@ function tooltipDisplay() {
   })
 }
 
+function refreshPage() {
+  const newOneButton = document.querySelector('.fa-arrow-left');
+
+  newOneButton.addEventListener('click', () => {
+    location.reload();
+  })
+}
+
+function bestWpmDisplay() {
+  const wpm = document.querySelector('#best-wpm');
+  const tests = document.querySelector('#tests');
+  wpm.textContent = `${Number(localStorage.getItem('bestWpm'))} wpm`;
+  tests.textContent = `${Number(localStorage.getItem('allTests'))}`;
+}
+
 /**
  * All components to start the app
  */
@@ -190,6 +219,8 @@ function startApp() {
   wordInput.placeholder = `${allRandomWords[0]}`;
 
   tooltipDisplay();
+  refreshPage();
+  bestWpmDisplay();
 }
 
 export default startApp
