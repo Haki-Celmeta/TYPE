@@ -221,27 +221,27 @@ function spaceEnter() {
 function tooltipDisplay() {
   var newOneButton = document.querySelector('.fa-arrow-left');
   var newOneTooltip = document.querySelector('#arrow-tooltip');
-  var redoButton = document.querySelector('.fa-redo');
-  var redoTooltip = document.querySelector('#redo-tooltip');
   newOneButton.addEventListener('mouseover', function () {
     newOneTooltip.style.visibility = 'visible';
   });
   newOneButton.addEventListener('mouseleave', function () {
     newOneTooltip.style.visibility = 'hidden';
   });
-  redoButton.addEventListener('mouseover', function () {
-    redoTooltip.style.visibility = 'visible';
-  });
-  redoButton.addEventListener('mouseleave', function () {
-    redoTooltip.style.visibility = 'hidden';
-  });
 }
+
+/**
+ * When new one button is clicked it reloades the page
+ */
 function refreshPage() {
   var newOneButton = document.querySelector('.fa-arrow-left');
   newOneButton.addEventListener('click', function () {
     location.reload();
   });
 }
+
+/**
+ * Update best wpm and all tests
+ */
 function bestWpmDisplay() {
   var wpm = document.querySelector('#best-wpm');
   var tests = document.querySelector('#tests');
@@ -253,14 +253,16 @@ function bestWpmDisplay() {
  * All components to start the app
  */
 function startApp() {
-  addWords(40);
-  spaceEnter();
-  countSeconds();
-  firstWord();
-  wordInput.placeholder = "".concat(allRandomWords[0]);
-  tooltipDisplay();
-  refreshPage();
-  bestWpmDisplay();
+  document.addEventListener('DOMContentLoaded', function () {
+    addWords(40);
+    spaceEnter();
+    countSeconds();
+    firstWord();
+    wordInput.placeholder = "".concat(allRandomWords[0]);
+    tooltipDisplay();
+    refreshPage();
+    bestWpmDisplay();
+  });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (startApp);
 
@@ -322,6 +324,9 @@ var Words = /*#__PURE__*/function () {
   return Words;
 }();
 _defineProperty(Words, "currendId", 0);
+/**
+ * All words array
+ */
 _defineProperty(Words, "words", ['hello', 'let', 'done', 'govern', 'be', 'conversation', 'foreign', 'world', 'know', 'little', 'big', 'small', 'fire', 'water', 'park', 'smile', 'cook', 'queue', 'stack', 'people', 'persons', 'coordinate', 'google', 'xerox', 'expert', 'maximum', 'minimum', 'mix', 'yes', 'you', 'yacht', 'yank', 'bug', 'knob', 'club', 'bee', 'busy', 'bus', 'about', 'pen', 'pit', 'plate', 'photo', 'pick', 'promise', 'pure', 'private', 'powerful', 'picture', 'olive', 'ocean', 'off', 'on', 'odd', 'occur', 'obey', 'queen', 'question', 'quick', 'quiet', 'quiz', 'quote', 'wage', 'waiter', 'waive', 'wall', 'warn', 'watch', 'we', 'weak', 'zero', 'zoo', 'above', 'about', 'access', 'able', 'cake', 'cage', 'call', 'can', 'cap', 'candy', 'capital', 'car', 'dad', 'danger', 'dark', 'day', 'deal', 'deaf', 'death', 'eat', 'ear', 'edge', 'face', 'fact', 'fail', 'fake', 'fall', 'fame', 'fan', 'gain', 'gas', 'generate', 'gentle', 'get', 'garden', 'hard', 'harm', 'if', 'image', 'idea', 'ill', 'jet', 'job', 'join', 'judge', 'juice', 'join']);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Words);
 
@@ -1564,9 +1569,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_htmlManipulation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/htmlManipulation */ "./src/js/htmlManipulation.js");
 
 
+var resetButton = document.querySelector('.button-reset');
+resetButton.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter') {
+    location.reload();
+  }
+});
 (0,_js_htmlManipulation__WEBPACK_IMPORTED_MODULE_1__["default"])();
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle4d73a87d07045edb3c8b.js.map
+//# sourceMappingURL=bundleb9609cfc4d5c411b5f6f.js.map

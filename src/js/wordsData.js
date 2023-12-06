@@ -1,6 +1,9 @@
 class Words {
   static currendId = 0;
 
+  /**
+   * All words array
+   */
   static words = [
     'hello', 'let', 'done', 'govern', 'be', 'conversation', 'foreign', 'world', 'know', 'little',
     'big', 'small', 'fire', 'water', 'park', 'smile', 'cook', 'queue', 'stack', 'people', 'persons',

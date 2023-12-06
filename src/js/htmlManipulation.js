@@ -173,8 +173,6 @@ function spaceEnter() {
 function tooltipDisplay() {
   const newOneButton = document.querySelector('.fa-arrow-left');
   const newOneTooltip = document.querySelector('#arrow-tooltip');
-  const redoButton = document.querySelector('.fa-redo');
-  const redoTooltip = document.querySelector('#redo-tooltip');
 
   newOneButton.addEventListener('mouseover', () => {
     newOneTooltip.style.visibility = 'visible';
@@ -183,16 +181,11 @@ function tooltipDisplay() {
   newOneButton.addEventListener('mouseleave', () => {
     newOneTooltip.style.visibility = 'hidden';
   })
-
-  redoButton.addEventListener('mouseover', () => {
-    redoTooltip.style.visibility = 'visible';
-  })
-
-  redoButton.addEventListener('mouseleave', () => {
-    redoTooltip.style.visibility = 'hidden';
-  })
 }
 
+/**
+ * When new one button is clicked it reloades the page
+ */
 function refreshPage() {
   const newOneButton = document.querySelector('.fa-arrow-left');
 
@@ -201,6 +194,9 @@ function refreshPage() {
   })
 }
 
+/**
+ * Update best wpm and all tests
+ */
 function bestWpmDisplay() {
   const wpm = document.querySelector('#best-wpm');
   const tests = document.querySelector('#tests');
@@ -212,15 +208,17 @@ function bestWpmDisplay() {
  * All components to start the app
  */
 function startApp() {
-  addWords(40);
-  spaceEnter();
-  countSeconds();
-  firstWord();
-  wordInput.placeholder = `${allRandomWords[0]}`;
+  document.addEventListener('DOMContentLoaded', () => {
+    addWords(40);
+    spaceEnter();
+    countSeconds();
+    firstWord();
+    wordInput.placeholder = `${allRandomWords[0]}`;
 
-  tooltipDisplay();
-  refreshPage();
-  bestWpmDisplay();
+    tooltipDisplay();
+    refreshPage();
+    bestWpmDisplay();
+  })
 }
 
 export default startApp
